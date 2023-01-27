@@ -6,8 +6,6 @@ import type { AdviceCardContent } from './types/advice-card';
 import { useEffect, useState } from 'react';
 
 function App() {
-  // front card State
-  // backcard state
   const [frontCard, setFrontCard] = useState<AdviceCardContent | null>(null);
   const [backCard, setBackCard] = useState<AdviceCardContent | null>(null);
   const [flipToBack, setflipToBack] = useState(true);
@@ -36,8 +34,8 @@ function App() {
     <main>
       {/* advice card container */}
       <div>
-        <AdviceCard />
-        <AdviceCard />
+        <AdviceCard adviceContent={frontCard} />
+        <AdviceCard adviceContent={backCard} />
       </div>
       {error && <p>{error.message}</p>}
     </main>
