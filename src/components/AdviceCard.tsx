@@ -5,12 +5,22 @@ import device from '../utils/device-breakpoints';
 import { useSWRConfig } from 'swr';
 import type { AdviceCardContent } from '../types/advice-card';
 
-const AdviceCard = () => {
+interface AdviceCardProps {
+  adviceContent: AdviceCardContent | null;
+}
+
+const AdviceCard = ({ adviceContent }: AdviceCardProps) => {
   const { mutate } = useSWRConfig();
   return (
     <div>
-      <p aria-live="polite">advice number</p>
-      <p aria-live="polite">advice text</p>
+      <p aria-live="polite">
+        {adviceContent ? adviceContent.adviceId : 'Loading advice...'}
+      </p>
+      <p aria-live="polite">
+        {adviceContent
+          ? adviceContent.adviceText
+          : 'Getting your next piece of advice...'}
+      </p>
 
       <picture>
         <source srcSet={borderSVGDesktop} media={device.tablet} />
